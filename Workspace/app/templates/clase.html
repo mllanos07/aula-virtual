@@ -13,12 +13,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url_for('index') }}">
-                <img src="https://m.media-amazon.com/images/I/51p4o3hNF0L._AC_SL1000_.jpg" alt="Logo" width="30" height="24">
+                <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fes%2Ffree-png-bttaw&psig=AOvVaw3bd9-rfMMlQUopWp41I-Ql&ust=1763743193282000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKCE7MSVgZEDFQAAAAAdAAAAABAE" alt="Logo" width="30" height="24">
                 Classroom
             </a>
             {% if session['user'] and session['user']['tipo'] == 'profesor' %}
             <script>
-                document.querySelector('.navbar-brand').setAttribute('href', '{{ url_for('index_docente') }}');
+                document.querySelector('.navbar-brand').setAttribute('href', "{{ url_for('index_docente') }}");
             </script>
             {% endif %}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

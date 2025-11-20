@@ -378,9 +378,23 @@ def delete_curso(cod_materia):
         return redirect(url_for('login'))
     cursor = connection.cursor()
     try:
-        # eliminar inscripciones de alumnos primero
+        # verificar que el profesor es el dueño de la materia
+        cursor.execute("SELECT docente_acargo FROM Clases WHERE Cod_materia = %s", (cod_materia,))
+        clase = cursor.fetchone()
+        if not clase:
+            cursor.close()
+            return redirect(url_for('index_docente'))
+        if int(clase['docente_acargo']) != int(session['user']['dni']):
+            cursor.close()
+            return redirect(url_for('index_docente'))
+
+        # eliminar filas dependientes para evitar errores de clave foranea
         cursor.execute("DELETE FROM Materias_alumno WHERE Cod_materia = %s", (cod_materia,))
-        # eliminar la materia
+        cursor.execute("DELETE FROM Materiales WHERE Cod_materia = %s", (cod_materia,))
+        cursor.execute("DELETE FROM evaluaciones WHERE Cod_materia = %s", (cod_materia,))
+        cursor.execute("DELETE FROM Mensajes_clase WHERE Cod_materia = %s", (cod_materia,))
+
+        # por último, eliminar la materia
         cursor.execute("DELETE FROM Clases WHERE Cod_materia = %s", (cod_materia,))
         connection.commit()
     except Exception as ex:

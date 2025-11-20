@@ -13,12 +13,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ url_for('index') }}">
-                <img src="https://m.media-amazon.com/images/I/51p4o3hNF0L._AC_SL1000_.jpg" alt="Logo" width="30" height="24">
+                <img src="https://cdn-icons-png.flaticon.com/512/1422/1422811.png" alt="Logo" width="30" height="24">
                 Classroom
             </a>
             {% if session['user'] and session['user']['tipo'] == 'profesor' %}
             <script>
-                document.querySelector('.navbar-brand').setAttribute('href', '{{ url_for('index_docente') }}');
+                document.querySelector('.navbar-brand').setAttribute('href', "{{ url_for('index_docente') }}");
             </script>
             {% endif %}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -53,7 +53,6 @@
             {% for clase in clases %}
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagen de la materia">
                     <div class="card-body">
                         <h5 class="card-title">{{ clase.Nombre_materia }}</h5>
                         <p class="card-text">Docente: {{ clase.docente_nombre }} {{ clase.docente_apellido }}</p>

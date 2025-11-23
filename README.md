@@ -30,7 +30,7 @@ aula-virtual
 
 1. Clona el repositorio:
    ```
-   git clone https://github.com/mateo-ulla/Aula-Virtual.git
+   git clone https://github.com/mllanos07/aula-virtual.git
    cd Aula-Virtual
    ```
 2. Instala las dependencias:
